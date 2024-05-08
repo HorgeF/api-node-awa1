@@ -6,7 +6,7 @@ const bodyparser = require('body-parser')
 const app = express()
 app.use(bodyparser.json())
 
-const PUERTO = 13472
+const PUERTO = 3000
 const conexion = mysql.createConnection(
     {
         port:13472,
