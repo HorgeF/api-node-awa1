@@ -32,4 +32,77 @@ app.get('/',(req,res) =>{
 })
 
 
+app.get('/usuarios',(req,res) =>{
+    const query = "SELECT * FROM AWA_USUARIOS;"
+    conexion.query(query,(error,resultado) =>{
+        if(error) return console.log(error.message)
+        
+        if(resultado.length > 0){
+            res.json(resultado[0])
+        }
+    })
+})
 
+app.get('/Awa', (req, res) => {
+    const sp_nombre = 'DASHBOARD_AWA_CAB';
+    const sp_parametro = req.query.id; // Suponiendo que recibes el parámetro desde la consulta HTTP
+
+    // Llama al procedimiento almacenado con el parámetro
+    const query = `CALL ${sp_nombre}(${sp_parametro})`;
+
+    conexion.query(query, (error, resultado) => {
+        if (error) {
+            console.error('Error al llamar al procedimiento almacenado:', error.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        if (resultado && resultado.length > 0) {
+            res.json(resultado[0]);
+        } else {
+            res.json({ mensaje: 'No se encontraron resultados' });
+        }
+    });
+});
+
+
+app.post('/Awa', (req, res) => {
+    const sp_nombre = 'REGISTRAR_LOG';
+    const sp_parametro = req.body.id; // Obtiene el valor del parámetro 'id' del cuerpo de la solicitud
+
+    // Llama al procedimiento almacenado con el parámetro 'id'
+    const query = `CALL ${sp_nombre}(${sp_parametro})`;
+
+    conexion.query(query, (error, resultado) => {
+        if (error) {
+            console.error('Error al llamar al procedimiento almacenado:', error.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        if (resultado && resultado.length > 0) {
+            res.json(resultado[0]);
+        } else {
+            res.json({ mensaje: 'No se encontraron resultados' });
+        }
+    });
+});
+
+app.get('/AwaDetail', (req, res) => {
+    const sp_nombre = 'DASHBOARD_AWA_DET';
+    const sp_parametro = req.query.id; // Suponiendo que recibes el parámetro desde la consulta HTTP
+
+    // Llama al procedimiento almacenado con el parámetro
+    const query = `CALL ${sp_nombre}(${sp_parametro})`;
+
+    conexion.query(query, (error, resultado) => {
+        if (error) {
+            console.error('Error al llamar al procedimiento almacenado:', error.message);
+            return res.status(500).json({ error: 'Error interno del servidor' });
+        }
+
+        if (resultado && resultado.length > 0) {
+            res.json(resultado);
+        } else {
+            res.json({ mensaje: 'No se encontraron resultados' });
+        }
+    });
+});
