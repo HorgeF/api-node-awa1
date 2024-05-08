@@ -6,9 +6,11 @@ const bodyparser = require('body-parser')
 const app = express()
 app.use(bodyparser.json())
 
-const PUERTO = 3977
+const PUERTO = process.env.PORT || 3977;
+
 const conexion = mysql.createConnection(
     {
+        port:13472,
         host:'viaduct.proxy.rlwy.net',
         database: 'railway',
         user: 'root',
