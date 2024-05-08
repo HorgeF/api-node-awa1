@@ -17,7 +17,7 @@ const conexion = mysql.createConnection(
     }
 )
 
-app.listen(PUERTO, ()=>{
+app.listen(PUERTO,"0.0.0.0", ()=>{
     console.log(`SERVIDOR CORRIENDO EN EL PUERTO ${PUERTO}`)
 })
 
