@@ -1,6 +1,6 @@
 const express = require('express')
-const mysql = require('mysql')
-//const mysql = require('mysql2');
+//const mysql = require('mysql')
+const mysql = require('mysql2');
 const bodyparser = require('body-parser')
 
 const app = express()
@@ -24,6 +24,16 @@ app.listen(PUERTO,"0.0.0.0", ()=>{
 conexion.connect(error =>{
     if(error) throw error
     console.log(`CONEXION EXITOSA A LA BASE DE DATOS`);
+
+    const query = "SELECT * FROM AWA_USUARIOS;"
+    conexion.query(query,(error,resultado) =>{
+        if(error) return console.log(error.message)
+        
+        if(resultado.length > 0){
+            res.json(resultado[0])
+        }
+    })
+
 })
 
 app.get('/',(req,res) =>{
