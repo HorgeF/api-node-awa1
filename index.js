@@ -18,9 +18,28 @@ const conexion = mysql.createConnection(
     }
 )
 
+
+// Middleware para verificar y abrir la conexión
+const ensureConnection = (req, res, next) => {
+    if (connection.state === 'disconnected') {
+        connection.connect((err) => {
+            if (err) {
+                console.error('Error al conectar con la base de datos:', err);
+                return res.status(500).json({ error: 'Error interno del servidor' });
+            }
+            console.log('Conexión abierta');
+            next();
+        });
+    } else {
+        next();
+    }
+};
+
 app.listen(PUERTO, ()=>{
     console.log(`SERVIDOR CORRIENDO EN EL PUERTO ${PUERTO}`)
 })
+
+app.use(ensureConnection); // Aplica el middleware a todas las rutas
 
 conexion.connect(error =>{
     if(error) throw error
