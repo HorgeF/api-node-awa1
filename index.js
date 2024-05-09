@@ -50,7 +50,7 @@ app.get('/',(req,res) =>{
 
 app.get('/usuarios',(req,res) =>{
     const query = "SELECT * FROM AWA_USUARIOS;"
-    conexion.query(query,(error,resultado) =>{
+    connection.query(query,(error,resultado) =>{
         if(error) return console.log(error.message)
         
         if(resultado.length > 0){
@@ -66,7 +66,7 @@ app.get('/Awa', (req, res) => {
     // Llama al procedimiento almacenado con el parámetro
     const query = `CALL ${sp_nombre}(${sp_parametro})`;
 
-    conexion.query(query, (error, resultado) => {
+    connection.query(query, (error, resultado) => {
         if (error) {
             console.error('Error al llamar al procedimiento almacenado:', error.message);
             return res.status(500).json({ error: 'Error interno del servidor' });
@@ -88,7 +88,7 @@ app.post('/Awa', (req, res) => {
     // Llama al procedimiento almacenado con el parámetro 'id'
     const query = `CALL ${sp_nombre}(${sp_parametro})`;
 
-    conexion.query(query, (error, resultado) => {
+    connection.query(query, (error, resultado) => {
         if (error) {
             console.error('Error al llamar al procedimiento almacenado:', error.message);
             return res.status(500).json({ error: 'Error interno del servidor' });
@@ -109,7 +109,7 @@ app.get('/AwaDetail', (req, res) => {
     // Llama al procedimiento almacenado con el parámetro
     const query = `CALL ${sp_nombre}(${sp_parametro})`;
 
-    conexion.query(query, (error, resultado) => {
+    connection.query(query, (error, resultado) => {
         if (error) {
             console.error('Error al llamar al procedimiento almacenado:', error.message);
             return res.status(500).json({ error: 'Error interno del servidor' });
