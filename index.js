@@ -8,16 +8,13 @@ app.use(bodyparser.json())
 
 const PUERTO = process.env.PORT || 3977;
 
-const conexion = mysql.createConnection(
-    {
-        port:13472,
-        host:'viaduct.proxy.rlwy.net',
-        database: 'railway',
-        user: 'root',
-        password: 'gamYKMBstzcxKDyoNfGEyRNPhgvlgTGt',
-    }
-)
-
+const connection = mysql.createConnection({
+    port: 13472,
+    host: 'viaduct.proxy.rlwy.net',
+    database: 'railway',
+    user: 'root',
+    password: 'gamYKMBstzcxKDyoNfGEyRNPhgvlgTGt',
+});
 
 // Middleware para verificar y abrir la conexión
 const ensureConnection = (req, res, next) => {
