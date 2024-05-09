@@ -38,7 +38,7 @@ app.listen(PUERTO, ()=>{
 
 app.use(ensureConnection); // Aplica el middleware a todas las rutas
 
-conexion.connect(error =>{
+connection.connect(error =>{
     if(error) throw error
     console.log(`CONEXION EXITOSA A LA BASE DE DATOS`);
 })
