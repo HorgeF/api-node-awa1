@@ -107,9 +107,10 @@ app.listen(PUERTO, () => {
         const sp_parametro = req.body.id; // Obtiene el valor del parámetro 'id' del cuerpo de la solicitud
     
         // Llama al procedimiento almacenado con el parámetro 'id'
-        const query = `CALL ${sp_nombre}(${sp_parametro})`;
-    
-        connection.query(query, (error, resultado) => {
+        //const query = `CALL ${sp_nombre}(${sp_parametro})`;
+        const query = `CALL ${sp_nombre}(?)`;
+        
+        connection.query(query,[sp_parametro], (error, resultado) => {
             if (error) {
                 console.error('Error al llamar al procedimiento almacenado:', error.message);
                 return res.status(500).json({ error: 'Error interno del servidor' });
