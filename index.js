@@ -37,7 +37,10 @@ app.listen(PUERTO, () => {
     // Define las rutas después de asegurarte de que la conexión se haya establecido
     app.use(ensureConnection); // Aplica el middleware a todas las rutas
 
-    app.get('/awa', (req, res) => {
+
+    //GETS##############################################################################
+
+    app.get('/', (req, res) => {
         res.send('API OK');
     });
 
@@ -74,6 +77,30 @@ app.listen(PUERTO, () => {
         });
     });
 
+    app.get('/AwaDetail', (req, res) => {
+        const sp_nombre = 'DASHBOARD_AWA_DET';
+        const sp_parametro = req.query.id; // Suponiendo que recibes el parámetro desde la consulta HTTP
+    
+        // Llama al procedimiento almacenado con el parámetro
+        const query = `CALL ${sp_nombre}(${sp_parametro})`;
+    
+        connection.query(query, (error, resultado) => {
+            if (error) {
+                console.error('Error al llamar al procedimiento almacenado:', error.message);
+                return res.status(500).json({ error: 'Error interno del servidor' });
+            }
+    
+            if (resultado && resultado.length > 0) {
+                res.json(resultado[0]);
+            } else {
+                res.json({ mensaje: 'No se encontraron resultados' });
+            }
+        });
+    });
+
+
+    //###################################################################################
+
     
     app.post('/Awa', (req, res) => {
         const sp_nombre = 'REGISTRAR_LOG';
@@ -96,11 +123,15 @@ app.listen(PUERTO, () => {
         });
     });
 
-    app.get('/AwaDetail', (req, res) => {
-        const sp_nombre = 'DASHBOARD_AWA_DET';
-        const sp_parametro = req.query.id; // Suponiendo que recibes el parámetro desde la consulta HTTP
     
-        // Llama al procedimiento almacenado con el parámetro
+    
+    //-------------------------------------------------------------------
+
+    app.post('/RegistrarUsuario', (req, res) => {
+        const sp_nombre = 'REGISTRAR_USUARIO';
+        const sp_parametro = req.body.id; // Obtiene el valor del parámetro 'id' del cuerpo de la solicitud
+    
+        // Llama al procedimiento almacenado con el parámetro 'id'
         const query = `CALL ${sp_nombre}(${sp_parametro})`;
     
         connection.query(query, (error, resultado) => {
@@ -116,7 +147,90 @@ app.listen(PUERTO, () => {
             }
         });
     });
+
+    app.post('/EditarUsuario', (req, res) => {
+        const sp_nombre = 'EDITAR_USUARIO';
+        const sp_parametro = req.body.id; // Obtiene el valor del parámetro 'id' del cuerpo de la solicitud
     
+        // Llama al procedimiento almacenado con el parámetro 'id'
+        const query = `CALL ${sp_nombre}(${sp_parametro})`;
+    
+        connection.query(query, (error, resultado) => {
+            if (error) {
+                console.error('Error al llamar al procedimiento almacenado:', error.message);
+                return res.status(500).json({ error: 'Error interno del servidor' });
+            }
+    
+            if (resultado && resultado.length > 0) {
+                res.json(resultado[0]);
+            } else {
+                res.json({ mensaje: 'No se encontraron resultados' });
+            }
+        });
+    });
+
+    app.post('/LoginUsuario', (req, res) => {
+        const sp_nombre = 'LOGIN_USUARIO';
+        const sp_parametro = req.body.id; // Obtiene el valor del parámetro 'id' del cuerpo de la solicitud
+    
+        // Llama al procedimiento almacenado con el parámetro 'id'
+        const query = `CALL ${sp_nombre}(${sp_parametro})`;
+    
+        connection.query(query, (error, resultado) => {
+            if (error) {
+                console.error('Error al llamar al procedimiento almacenado:', error.message);
+                return res.status(500).json({ error: 'Error interno del servidor' });
+            }
+    
+            if (resultado && resultado.length > 0) {
+                res.json(resultado[0]);
+            } else {
+                res.json({ mensaje: 'No se encontraron resultados' });
+            }
+        });
+    });
+
+    app.post('/ResetPassword', (req, res) => {
+        const sp_nombre = 'RESET_PASS';
+        const sp_parametro = req.body.id; // Obtiene el valor del parámetro 'id' del cuerpo de la solicitud
+    
+        // Llama al procedimiento almacenado con el parámetro 'id'
+        const query = `CALL ${sp_nombre}(${sp_parametro})`;
+    
+        connection.query(query, (error, resultado) => {
+            if (error) {
+                console.error('Error al llamar al procedimiento almacenado:', error.message);
+                return res.status(500).json({ error: 'Error interno del servidor' });
+            }
+    
+            if (resultado && resultado.length > 0) {
+                res.json(resultado[0]);
+            } else {
+                res.json({ mensaje: 'No se encontraron resultados' });
+            }
+        });
+    });
+
+    app.post('/CalculaAgua', (req, res) => {
+        const sp_nombre = 'CALCULA_AGUA';
+        const sp_parametro = req.body.id; // Obtiene el valor del parámetro 'id' del cuerpo de la solicitud
+    
+        // Llama al procedimiento almacenado con el parámetro 'id'
+        const query = `CALL ${sp_nombre}(${sp_parametro})`;
+    
+        connection.query(query, (error, resultado) => {
+            if (error) {
+                console.error('Error al llamar al procedimiento almacenado:', error.message);
+                return res.status(500).json({ error: 'Error interno del servidor' });
+            }
+    
+            if (resultado && resultado.length > 0) {
+                res.json(resultado[0]);
+            } else {
+                res.json({ mensaje: 'No se encontraron resultados' });
+            }
+        });
+    });
 
 
 
