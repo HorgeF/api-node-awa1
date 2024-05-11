@@ -37,7 +37,7 @@ app.listen(PUERTO, () => {
     // Define las rutas después de asegurarte de que la conexión se haya establecido
     app.use(ensureConnection); // Aplica el middleware a todas las rutas
 
-    app.get('/', (req, res) => {
+    app.get('/awa', (req, res) => {
         res.send('API OK');
     });
 
