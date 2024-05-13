@@ -128,7 +128,7 @@ app.listen(PUERTO, () => {
     
     //-------------------------------------------------------------------
 
-    app.post('/RegistrarUsuario', (req, res) => {
+    app.post('/Usuario/Registrar', (req, res) => {
         const sp_nombre = 'REGISTRAR_USUARIO';
         
         const sp_parametro1 = req.body.USUARIO;
@@ -171,7 +171,7 @@ app.listen(PUERTO, () => {
         });
     });
 
-    app.post('/EditarUsuario', (req, res) => {
+    app.post('/Usuario/Editar', (req, res) => {
         const sp_nombre = 'EDITAR_USUARIO';
         
         const sp_parametro = req.body.id;
@@ -217,7 +217,7 @@ app.listen(PUERTO, () => {
         });
     });
 
-    app.post('/LoginUsuario', (req, res) => {
+    app.post('/Login', (req, res) => {
         const sp_nombre = 'LOGIN_USUARIO';
         const sp_parametro1 = req.body.USUARIO;
         const sp_parametro2 = req.body.CONTRASENIA; // Obtiene el valor del parámetro 'id' del cuerpo de la solicitud
@@ -248,7 +248,7 @@ app.listen(PUERTO, () => {
     });
 
 
-    app.post('/ResetPassword', (req, res) => {
+    app.post('/Login/Reset', (req, res) => {
         const sp_nombre = 'RESET_PASS';
          const sp_parametro1 = req.body.USUARIO;
         const sp_parametro2 = req.body.CONTRASENIA; // Obtiene el valor del parámetro 'id' del cuerpo de la solicitud
