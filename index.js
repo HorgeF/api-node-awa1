@@ -131,16 +131,16 @@ app.listen(PUERTO, () => {
     app.post('/Usuario/Registrar', (req, res) => {
         const sp_nombre = 'REGISTRAR_USUARIO';
         
-        const sp_parametro1 = req.body.USUARIO;
-        const sp_parametro2 = req.body.CONTRASENIA;
-        const sp_parametro3 = req.body.USU_NOMBRE;
-        const sp_parametro4 = req.body.USU_SEXO;
-        const sp_parametro5 = req.body.USU_FECHA_NACIMIENTO;
-        const sp_parametro6 = req.body.USU_EDAD;
-        const sp_parametro7 = req.body.USU_PESO;
-        const sp_parametro8 = req.body.USU_TALLA;
-        const sp_parametro9 = req.body.USU_CORREO;
-        const sp_parametro10 = req.body.USU_CELULAR;
+        const sp_parametro1 = req.body.usuario;
+        const sp_parametro2 = req.body.contrasenia;
+        const sp_parametro3 = req.body.usu_nombre;
+        const sp_parametro4 = req.body.usu_Sexo;
+        const sp_parametro5 = req.body.usu_fecha_nacimiento;
+        const sp_parametro6 = req.body.usu_edad;
+        const sp_parametro7 = req.body.usu_peso;
+        const sp_parametro8 = req.body.usu_talla;
+        const sp_parametro9 = req.body.usu_correo;
+        const sp_parametro10 = req.body.usu_celular;
     
         // Llama al procedimiento almacenado con el parámetro 'id'
         const query = `CALL ${sp_nombre}(?,?,?,?,?,?,?,?,?,?,@RESULTADO)`;    
@@ -162,7 +162,7 @@ app.listen(PUERTO, () => {
                 }
                 
                 if (result && result.length > 0) {
-                    res.json(sp_parametro1);
+                    res.json(req.body.usuario);
                 } else {
                     res.json({ mensaje: 'Ocurrió un error, no se pudo registrar, intente nuevamente' });
                 } 
