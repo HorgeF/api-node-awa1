@@ -143,7 +143,7 @@ app.listen(PUERTO, () => {
         const sp_parametro10 = req.body.USU_CELULAR;
     
         // Llama al procedimiento almacenado con el parámetro 'id'
-        const query = `CALL ${sp_nombre}(?,?,?,?,?,?,?,?,?,?,RESULTADO)`;    
+        const query = `CALL ${sp_nombre}(?,?,?,?,?,?,?,?,?,?,@RESULTADO)`;    
         connection.query(query,[sp_parametro1,sp_parametro2,
                                 sp_parametro3,sp_parametro4,
                                 sp_parametro5,sp_parametro6,
@@ -155,7 +155,7 @@ app.listen(PUERTO, () => {
             }
 
             // Fetch the output parameter value by executing another query
-            connection.query('SELECT RESULTADO as outputValue', (err, result) => {
+            connection.query('SELECT @RESULTADO as outputValue', (err, result) => {
                 if (err) {
                     console.error('Error fetching output parameter:', err.stack);
                     return res.status(500).send('Error fetching data from the database');
@@ -187,7 +187,7 @@ app.listen(PUERTO, () => {
         const sp_parametro10 = req.body.USU_CELULAR;
     
         // Llama al procedimiento almacenado con el parámetro 'id'
-        const query = `CALL ${sp_nombre}(?,?,?,?,?,?,?,?,?,?,?,RESULTADO)`;
+        const query = `CALL ${sp_nombre}(?,?,?,?,?,?,?,?,?,?,?,@RESULTADO)`;
     
         connection.query(query,[sp_parametro,sp_parametro1,
                                 sp_parametro2,sp_parametro3,
@@ -201,7 +201,7 @@ app.listen(PUERTO, () => {
             }
     
             // Fetch the output parameter value by executing another query
-            connection.query('SELECT RESULTADO as outputValue', (err, result) => {
+            connection.query('SELECT @RESULTADO as outputValue', (err, result) => {
                 if (err) {
                     console.error('Error fetching output parameter:', err.stack);
                     return res.status(500).send('Error fetching data from the database');
@@ -223,7 +223,7 @@ app.listen(PUERTO, () => {
         const sp_parametro2 = req.body.CONTRASENIA; // Obtiene el valor del parámetro 'id' del cuerpo de la solicitud
     
         // Llama al procedimiento almacenado con el parámetro 'id'
-        const query = `CALL ${sp_nombre}(?,?,RESULTADO)`;
+        const query = `CALL ${sp_nombre}(?,?,@RESULTADO)`;
     
         connection.query(query,[sp_parametro1,sp_parametro2], (error, resultado) => {
             if (error) {
@@ -232,7 +232,7 @@ app.listen(PUERTO, () => {
             }
     
            // Fetch the output parameter value by executing another query
-           connection.query('SELECT RESULTADO as outputValue', (err, result) => {
+           connection.query('SELECT @RESULTADO as outputValue', (err, result) => {
             if (err) {
                 console.error('Error fetching output parameter:', err.stack);
                 return res.status(500).send('Error fetching data from the database');
