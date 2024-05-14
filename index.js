@@ -155,7 +155,7 @@ app.listen(PUERTO, () => {
             }
 
             // Fetch the output parameter value by executing another query
-            connection.query('SELECT @RESULTADO as outputValue', (err, result) => {
+            connection.query('SELECT @RESULTADO as MSG', (err, result) => {
                 if (err) {
                     console.error('Error fetching output parameter:', err.stack);
                     return res.status(500).send('Error fetching data from the database');
@@ -201,7 +201,7 @@ app.listen(PUERTO, () => {
             }
     
             // Fetch the output parameter value by executing another query
-            connection.query('SELECT @RESULTADO as outputValue', (err, result) => {
+            connection.query('SELECT @RESULTADO as MSG', (err, result) => {
                 if (err) {
                     console.error('Error fetching output parameter:', err.stack);
                     return res.status(500).send('Error fetching data from the database');
@@ -232,7 +232,7 @@ app.listen(PUERTO, () => {
             }
     
            // Fetch the output parameter value by executing another query
-           connection.query('SELECT @RESULTADO as outputValue', (err, result) => {
+           connection.query('SELECT @RESULTADO as MSG', (err, result) => {
             if (err) {
                 console.error('Error fetching output parameter:', err.stack);
                 return res.status(500).send('Error fetching data from the database');
@@ -263,7 +263,7 @@ app.listen(PUERTO, () => {
             }
     
            // Fetch the output parameter value by executing another query
-           connection.query('SELECT @RESULTADO as outputValue', (err, result) => {
+           connection.query('SELECT @RESULTADO as MSG', (err, result) => {
             if (err) {
                 console.error('Error fetching output parameter:', err.stack);
                 return res.status(500).send('Error fetching data from the database');
