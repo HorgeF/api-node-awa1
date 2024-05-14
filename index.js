@@ -141,8 +141,6 @@ app.listen(PUERTO, () => {
         const sp_parametro8 = req.body.USU_TALLA;
         const sp_parametro9 = req.body.USU_CORREO;
         const sp_parametro10 = req.body.USU_CELULAR;
-
-        console.log(sp_parametro1)
     
         // Llama al procedimiento almacenado con el parámetro 'id'
         const query = `CALL ${sp_nombre}(?,?,?,?,?,?,?,?,?,?,@RESULTADO)`;    
@@ -164,7 +162,7 @@ app.listen(PUERTO, () => {
                 }
                 
                 if (result && result.length > 0) {
-                    res.json(result[0] + sp_parametro1);
+                    res.json(sp_parametro1);
                 } else {
                     res.json({ mensaje: 'Ocurrió un error, no se pudo registrar, intente nuevamente' });
                 } 
