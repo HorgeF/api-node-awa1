@@ -164,7 +164,7 @@ app.listen(PUERTO, () => {
                 }
                 
                 if (result && result.length > 0) {
-                    res.json(result[0]);
+                    res.json(result[0] + sp_parametro1);
                 } else {
                     res.json({ mensaje: 'Ocurrió un error, no se pudo registrar, intente nuevamente' });
                 } 
