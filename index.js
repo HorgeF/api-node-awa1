@@ -28,7 +28,7 @@ const ensureConnection = (req, res, next) => {
         });
     } else {
         next();
-    }
+    } 
 };
 
 app.listen(PUERTO, () => {
