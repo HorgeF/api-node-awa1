@@ -58,7 +58,7 @@ app.listen(PUERTO, () => {
 
     app.get('/Awa', (req, res) => {
         const sp_nombre = 'DASHBOARD_AWA_CAB';
-        const sp_parametro = req.body.id; // Suponiendo que recibes el parámetro desde la consulta HTTP
+        const sp_parametro = req.params.id; // Suponiendo que recibes el parámetro desde la consulta HTTP
     
         // Llama al procedimiento almacenado con el parámetro
         const query = `CALL ${sp_nombre}(?)`;
@@ -79,7 +79,7 @@ app.listen(PUERTO, () => {
 
     app.get('/AwaDetail', (req, res) => {
         const sp_nombre = 'DASHBOARD_AWA_DET';
-        const sp_parametro = req.body.id; // Suponiendo que recibes el parámetro desde la consulta HTTP
+        const sp_parametro = req.params.id; // Suponiendo que recibes el parámetro desde la consulta HTTP
     
         const query = `CALL ${sp_nombre}(?)`;
         
