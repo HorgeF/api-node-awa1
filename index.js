@@ -58,12 +58,12 @@ app.listen(PUERTO, () => {
 
     app.get('/Awa', (req, res) => {
         const sp_nombre = 'DASHBOARD_AWA_CAB';
-        const sp_parametro = req.params.id; // Suponiendo que recibes el parámetro desde la consulta HTTP
+        const sp_parametro = req.query.id; // Suponiendo que recibes el parámetro desde la consulta HTTP
     
         // Llama al procedimiento almacenado con el parámetro
-        const query = `CALL ${sp_nombre}(?)`;
-        
-        conexion.query(query,[sp_parametro], (error, resultado) => {
+        const query = `CALL ${sp_nombre}(${sp_parametro})`;
+    
+        connection.query(query, (error, resultado) => {
             if (error) {
                 console.error('Error al llamar al procedimiento almacenado:', error.message);
                 return res.status(500).json({ error: 'Error interno del servidor' });
@@ -79,11 +79,12 @@ app.listen(PUERTO, () => {
 
     app.get('/AwaDetail', (req, res) => {
         const sp_nombre = 'DASHBOARD_AWA_DET';
-        const sp_parametro = req.params.id; // Suponiendo que recibes el parámetro desde la consulta HTTP
+        const sp_parametro = req.query.id; // Suponiendo que recibes el parámetro desde la consulta HTTP
     
-        const query = `CALL ${sp_nombre}(?)`;
-        
-        conexion.query(query,[sp_parametro], (error, resultado) => {
+        // Llama al procedimiento almacenado con el parámetro
+        const query = `CALL ${sp_nombre}(${sp_parametro})`;
+    
+        connection.query(query, (error, resultado) => {
             if (error) {
                 console.error('Error al llamar al procedimiento almacenado:', error.message);
                 return res.status(500).json({ error: 'Error interno del servidor' });
