@@ -70,7 +70,7 @@ app.listen(PUERTO, () => {
             }
     
             if (resultado && resultado.length > 0) {
-                res.json(resultado);
+                res.json(resultado[0]);
             } else {
                 res.json({ mensaje: 'No se encontraron resultados' });
             }
