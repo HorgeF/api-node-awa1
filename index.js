@@ -51,7 +51,7 @@ app.listen(PUERTO, () => {
             if(error) return console.log(error.message)
             
             if(resultado.length > 0){
-                res.json(resultado[0])
+                res.json(resultado)
             }
         })
     })
